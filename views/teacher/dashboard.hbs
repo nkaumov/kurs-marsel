@@ -1,0 +1,9 @@
+<h2>Привязанные группы</h2>
+<ul>
+  {{#each plans}}
+    <li>
+      {{this.direction}} - {{this.course}} курс ({{this.subject_name}})
+      <a href="/teacher/plan/{{this.id}}/tasks" class="btn btn-sm btn-outline-primary ms-2">Задания</a>
+    </li>
+  {{/each}}
+</ul>

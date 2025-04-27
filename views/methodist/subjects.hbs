@@ -1,0 +1,27 @@
+<h2>Предметы</h2>
+
+<form action="/methodist/subjects" method="POST" class="row g-3 mb-4">
+  <div class="col-md-6">
+    <input type="text" name="name" class="form-control" placeholder="Название предмета" required>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-success">Добавить</button>
+  </div>
+</form>
+
+<table class="table">
+  <thead><tr><th>ID</th><th>Название</th><th></th></tr></thead>
+  <tbody>
+    {{#each subjects}}
+      <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.name}}</td>
+        <td>
+          <form action="/methodist/subjects/{{this.id}}?_method=DELETE" method="POST">
+            <button class="btn btn-danger btn-sm">Удалить</button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

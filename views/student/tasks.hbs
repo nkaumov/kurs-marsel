@@ -1,0 +1,9 @@
+<h2>Задания по предметам</h2>
+{{#each subjectMap}}
+  <h4>{{@key}}</h4>
+  <ul>
+    {{#each this}}
+      <li><a href="/student/tasks/{{this.id}}">{{this.title}}</a> (до {{formatDate this.deadline}})</li>
+    {{/each}}
+  </ul>
+{{/each}}

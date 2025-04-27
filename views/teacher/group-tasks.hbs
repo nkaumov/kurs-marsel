@@ -1,0 +1,9 @@
+<h2>Задания группы</h2>
+<ul>
+  {{#each tasks}}
+    <li>
+      {{this.title}} (до {{formatDate this.deadline}})
+      <a href="/teacher/task/{{this.id}}/submissions" class="btn btn-sm btn-outline-secondary ms-2">Проверить</a>
+    </li>
+  {{/each}}
+</ul>

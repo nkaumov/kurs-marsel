@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/dashboard">CMS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      {{#if user}}
+      <ul class="navbar-nav me-auto">
+        {{#if (eq user.role 'methodist')}}
+          <li class="nav-item"><a class="nav-link" href="/methodist/groups">Группы</a></li>
+          <li class="nav-item"><a class="nav-link" href="/methodist/students">Студенты</a></li>
+          <li class="nav-item"><a class="nav-link" href="/methodist/teachers">Преподаватели</a></li>
+          <li class="nav-item"><a class="nav-link" href="/methodist/subjects">Предметы</a></li>
+          <li class="nav-item"><a class="nav-link" href="/methodist/studyplans">Планы</a></li>
+        {{/if}}
+        {{#if (eq user.role 'teacher')}}
+          <li class="nav-item"><a class="nav-link" href="/teacher/dashboard">Группы</a></li>
+        {{/if}}
+        {{#if (eq user.role 'student')}}
+          <li class="nav-item"><a class="nav-link" href="/student/dashboard">Задания</a></li>
+        {{/if}}
+      </ul>
+      <span class="navbar-text text-white me-3">{{user.full_name}}</span>
+      <a class="btn btn-outline-light" href="/logout">Выход</a>
+      {{/if}}
+    </div>
+  </div>
+</nav>

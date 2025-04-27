@@ -1,0 +1,31 @@
+<h2>Учебные группы</h2>
+
+<form action="/methodist/groups" method="POST" class="row g-3 mb-4">
+  <div class="col-md-5">
+    <input type="text" name="direction" class="form-control" placeholder="Направление" required>
+  </div>
+  <div class="col-md-3">
+    <input type="number" name="course" class="form-control" placeholder="Курс" required>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-success">Добавить</button>
+  </div>
+</form>
+
+<table class="table">
+  <thead><tr><th>ID</th><th>Направление</th><th>Курс</th><th></th></tr></thead>
+  <tbody>
+    {{#each groups}}
+      <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.direction}}</td>
+        <td>{{this.course}}</td>
+        <td>
+          <form action="/methodist/groups/{{this.id}}?_method=DELETE" method="POST">
+            <button class="btn btn-danger btn-sm">Удалить</button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

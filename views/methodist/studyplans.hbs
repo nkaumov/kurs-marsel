@@ -1,0 +1,50 @@
+<h2>Учебные планы</h2>
+
+<form action="/methodist/studyplans" method="POST" class="row g-3 mb-4">
+  <div class="col-md-3">
+    <select name="group_id" class="form-select" required>
+      <option value="">Группа...</option>
+      {{#each groups}}
+        <option value="{{this.id}}">{{this.direction}} ({{this.course}})</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="col-md-3">
+    <select name="subject_id" class="form-select" required>
+      <option value="">Предмет...</option>
+      {{#each subjects}}
+        <option value="{{this.id}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="col-md-3">
+    <select name="teacher_id" class="form-select" required>
+      <option value="">Преподаватель...</option>
+      {{#each teachers}}
+        <option value="{{this.id}}">{{this.full_name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-success">Создать план</button>
+  </div>
+</form>
+
+<table class="table">
+  <thead><tr><th>ID</th><th>Группа</th><th>Предмет</th><th>Преподаватель</th><th></th></tr></thead>
+  <tbody>
+    {{#each plans}}
+      <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.direction}} ({{this.course}})</td>
+        <td>{{this.subject_name}}</td>
+        <td>{{this.teacher_name}}</td>
+        <td>
+          <form action="/methodist/studyplans/{{this.id}}?_method=DELETE" method="POST">
+            <button class="btn btn-danger btn-sm">Удалить</button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

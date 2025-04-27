@@ -1,0 +1,23 @@
+<h2>Присланные работы</h2>
+<table class="table">
+  <thead><tr><th>Студент</th><th>Файл</th><th>Отправлено</th><th>Статус</th><th></th></tr></thead>
+  <tbody>
+    {{#each submissions}}
+      <tr>
+        <td>{{this.full_name}}</td>
+        <td><a href="{{this.submission_file}}" target="_blank">файл</a></td>
+        <td>{{formatDate this.submitted_at}}</td>
+        <td>{{this.status}}</td>
+        <td>
+          <form action="/teacher/submission/{{this.id}}/status" method="POST">
+            <select name="status" class="form-select form-select-sm d-inline w-auto">
+              <option value="accepted" {{#if (eq this.status 'accepted')}}selected{{/if}}>Принять</option>
+              <option value="needs_revision" {{#if (eq this.status 'needs_revision')}}selected{{/if}}>Доработка</option>
+            </select>
+            <button class="btn btn-sm btn-primary">OK</button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
