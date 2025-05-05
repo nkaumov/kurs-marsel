@@ -32,4 +32,9 @@ router.get('/studyplans', methodistController.studyplans);
 router.post('/studyplans', methodistController.createStudyPlan);
 router.delete('/studyplans/:id', methodistController.deleteStudyPlan);
 
+
+// TASKS for study plan
+router.get('/studyplans/:id/tasks', methodistController.studyplanTasks);
+router.post('/studyplans/:id/tasks', methodistController.createTask);
+
 module.exports = router;

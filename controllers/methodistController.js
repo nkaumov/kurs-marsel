@@ -114,3 +114,36 @@ exports.deleteStudyPlan = async (req,res)=>{
   req.flash('success_msg','Учебный план удалён');
   res.redirect('/methodist/studyplans');
 };
+// TASKS for a study plan
+exports.studyplanTasks = async (req,res)=>{
+  const planId = req.params.id;
+  const plan = (await StudyPlan.all()).find(p => p.id == planId);
+  if(!plan) {
+    req.flash('error_msg','План не найден');
+    return res.redirect('/methodist/studyplans');
+  }
+  const tasks = await require('../models/Task').byPlan(planId);
+  res.render('methodist/studyplan-tasks',{plan,tasks});
+};
+exports.createTask = async (req,res)=>{
+  const planId = req.params.id;
+  const {title,description,deadline} = req.body;
+  if(!title||!deadline){
+    req.flash('error_msg','Заполните все поля');
+    return res.redirect(`/methodist/studyplans/${planId}/tasks`);
+  }
+  await require('../models/Task').create({study_plan_id:planId,title,description,deadline});
+  req.flash('success_msg','Задание добавлено');
+  res.redirect(`/methodist/studyplans/${planId}/tasks`);
+};
+
+exports.updateStatus = async (req, res) => {
+  const submissionId = req.params.id;
+  const { status, returnTo } = req.body;   // + забираем URL возврата
+  await StudentTask.updateStatus(submissionId, status);
+  req.flash('success_msg', 'Статус обновлен');
+  res.redirect('back');                   // ⬅ убираем
++  // Надёжно возвращаемся туда, откуда пришли
++  res.redirect(returnTo || req.get('referer') || '/teacher/dashboard');
+};
+

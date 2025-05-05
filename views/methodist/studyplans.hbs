@@ -31,7 +31,7 @@
 </form>
 
 <table class="table">
-  <thead><tr><th>ID</th><th>Группа</th><th>Предмет</th><th>Преподаватель</th><th></th></tr></thead>
+  <thead><tr><th>ID</th><th>Группа</th><th>Предмет</th><th>Преподаватель</th><th></th><th></th></tr></thead>
   <tbody>
     {{#each plans}}
       <tr>
@@ -44,6 +44,7 @@
             <button class="btn btn-danger btn-sm">Удалить</button>
           </form>
         </td>
+        <td><a href="/methodist/studyplans/{{this.id}}/tasks" class="btn btn-sm btn-outline-secondary">Задания</a></td>
       </tr>
     {{/each}}
   </tbody>

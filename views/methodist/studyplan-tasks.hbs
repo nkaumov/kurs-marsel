@@ -1,0 +1,32 @@
+
+<h2>Задания для группы {{plan.direction}} ({{plan.course}} курс) — {{plan.subject_name}}</h2>
+
+<form action="/methodist/studyplans/{{plan.id}}/tasks" method="POST" class="row g-3 mb-4">
+  <div class="col-md-3">
+    <input type="text" name="title" class="form-control" placeholder="Название" required>
+  </div>
+  <div class="col-md-4">
+    <input type="text" name="description" class="form-control" placeholder="Описание">
+  </div>
+  <div class="col-md-3">
+    <input type="date" name="deadline" class="form-control" required>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-success">Добавить</button>
+  </div>
+</form>
+
+<table class="table">
+  <thead><tr><th>ID</th><th>Название</th><th>Дедлайн</th></tr></thead>
+  <tbody>
+    {{#each tasks}}
+      <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.title}}</td>
+        <td>{{formatDate this.deadline}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<a href="/methodist/studyplans" class="btn btn-secondary">Назад к планам</a>

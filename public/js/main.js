@@ -1,1 +1,1 @@
-// custom client-side scripts
+// custom scripts

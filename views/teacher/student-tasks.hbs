@@ -10,12 +10,15 @@
         <td>{{this.status}}</td>
         <td>
           <form action="/teacher/submission/{{this.id}}/status" method="POST">
-            <select name="status" class="form-select form-select-sm d-inline w-auto">
-              <option value="accepted" {{#if (eq this.status 'accepted')}}selected{{/if}}>Принять</option>
-              <option value="needs_revision" {{#if (eq this.status 'needs_revision')}}selected{{/if}}>Доработка</option>
-            </select>
-            <button class="btn btn-sm btn-primary">OK</button>
-          </form>
+  <input type="hidden" name="returnTo"
+         value="/teacher/task/{{../taskId}}/submissions">
+  <select name="status" class="form-select form-select-sm d-inline w-auto">
+      <option value="accepted" {{#if (eq this.status "accepted")}}selected{{/if}}>Принять</option>
+      <option value="needs_revision" {{#if (eq this.status "needs_revision")}}selected{{/if}}>Доработка</option>
+  </select>
+  <button class="btn btn-sm btn-primary">OK</button>
+</form>
+
         </td>
       </tr>
     {{/each}}
